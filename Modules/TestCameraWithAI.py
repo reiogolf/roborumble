@@ -1,4 +1,4 @@
-from CameraModule import *
+from Modules.CameraModule import *
 import os
 from pyzbar.pyzbar import decode
 from PIL import Image
