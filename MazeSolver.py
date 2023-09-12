@@ -255,9 +255,7 @@ try:
         if (act()):
             break
 
-    decision = decideAction();        
-    while decision!="straight":
-        decision = decideAction();
+    time.sleep(5000);
 
     while True:
         if (act()):
