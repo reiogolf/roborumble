@@ -1,6 +1,7 @@
-#from Modules.CameraModule import *
+from Modules.CameraModule import *
 from Modules.MotorModule import *
 from Modules.SensorModule import *
+from Modules.TestCameraWithAI import scan_and_decipher
 from Modules.UltrasonicModule import *
 import RPi.GPIO as GPIO
 
@@ -246,8 +247,22 @@ try:
     stay_put()
     while True:
         # Bot running
-        #if (detectObject() < 30):
-        #    print("Detected obj")
+        if (detectObject() < 15):
+            print("Detected QR banner")
+            ai_result = scan_and_decipher()
+            ai_result = ai_result.lower()
+            # Call the function based on the ai_result
+            if ai_result == "forward":
+                straight()
+            elif ai_result == "backward":
+                turn_around()
+            elif ai_result == "left":
+                turn_left()
+            elif ai_result == "right":
+                turn_right()
+            else:
+                print("Inconclusive result.")
+
         if (act()):
             break
 
