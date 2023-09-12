@@ -227,6 +227,7 @@ def act():
         turn_around()
     elif decision == "stay":
         stay_put()
+        return True
         return True  # Stop
     elif decision == "leftright":
         turn_right()
@@ -248,6 +249,15 @@ try:
         # Bot running
         #if (detectObject() < 30):
         #    print("Detected obj")
+        if (act()):
+            break
+
+    decision = decideAction()
+
+    while(decision != "straight"):
+        decision = decideAction()
+        
+    while True:
         if (act()):
             break
 
