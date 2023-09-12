@@ -207,11 +207,14 @@ def decideAction():
 
     return ""
 
+options = [];
 
 def act():
     decision = decideAction()
     if decision != "straight" and decision != "adjust_left" and decision != "adjust_right":
         print(decision)
+        
+    options.append(decision);
 
     if decision == "straight":
         straight()
@@ -227,7 +230,6 @@ def act():
         turn_around()
     elif decision == "stay":
         stay_put()
-        return True
         return True  # Stop
     elif decision == "leftright":
         turn_right()
@@ -241,6 +243,7 @@ def act():
         unmapped()
 
 
+
 print("Starting program")
 setupIO()
 try:
@@ -252,14 +255,15 @@ try:
         if (act()):
             break
 
-    decision = decideAction()
+    decision = decideAction();        
+    while decision!="straight":
+        decision = decideAction();
 
-    while(decision != "straight"):
-        decision = decideAction()
-        
     while True:
         if (act()):
             break
+        
+        
 
 except KeyboardInterrupt:
     GPIO.cleanup()
